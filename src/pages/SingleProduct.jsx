@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { formatPrice, customFetch } from "../utils";
+import { formatPrice, customFetch, generateAmountOptions } from "../utils";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,6 +15,11 @@ const SingleProduct = () => {
     product.product.attributes;
   const dollarsAmount = formatPrice(price);
   const [productColor, setProductColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const handleAmount = (e) => {
+    setAmount(parseInt(e.target.value));
+  };
 
   return (
     <section>
@@ -64,6 +69,31 @@ const SingleProduct = () => {
                 );
               })}
             </div>
+          </div>
+          {/* Amount */}
+          <div className="form-control w-full max-w-xs">
+            <label className="label" htmlFor="amount">
+              <h4 className="text-md font-medium tracking-wider capitalize">
+                amount
+              </h4>
+            </label>
+            <select
+              className="select select-secondary select-bordered select-md"
+              id="amount"
+              value={amount}
+              onChange={handleAmount}
+            >
+              {generateAmountOptions(20)}
+            </select>
+          </div>
+          {/* Cart BTN */}
+          <div className="mt-10">
+            <button
+              className="btn btn-secondary btn-md"
+              onClick={() => console.log("Add to bag")}
+            >
+              Add to bag
+            </button>
           </div>
         </div>
       </div>
