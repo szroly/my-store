@@ -4,7 +4,7 @@ import { customFetch } from "../utils";
 import { toast } from "react-toastify";
 
 export const action = async ({ request }) => {
-  const formData = request.formData();
+  const formData = await request.formData();
   const data = Object.entries(formData);
 
   try {
